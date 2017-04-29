@@ -1,31 +1,8 @@
-lSOURCES=$(wildcard *.cxx)
-sSOURCES=$(wildcard *.cpp)
-HEADERS=$(wildcard *.h)
-lOBJECTS=$(lSOURCES:%.cxx=%.o)
-sOBJECTS=$(sSOURCES:%.cpp=%.o)
-TARGET=maze.exe
-LIB=maze.a
-
-all: $(TARGET) $(LIB)
-$(TARGET): $(sOBJECTS) $(HEADERS) $(LIB)
-	@echo "Now Generating $(TARGET) ..."
-	g++ $(sOBJECTS) $(LIB) -o $(TARGET)
-$(LIB): $(lOBJECTS) $(HEADERS)
-	@echo "Now Generating $(LIB) ..."
-	ar -rv $(LIB) $(lOBJECTS)
-	ranlib $(LIB)
-%.o: %.cpp $(HEADERS)
-	@echo "Now Compiling $< ..."
-	g++ -c $< -o $@
-%.o: %.cxx $(HEADERS)
-	@echo "Now Compiling $< ..."
-	g++ -c $< -o $@
+maze.exe: main.o maze.a OptRouter.o
+	g++ main.o maze.a OptRouter.o -o maze.exe
+main.o: main.cpp BaseRouter.h OptRouter.h
+	g++ -c main.cpp -o main.o
+OptRouter.o: OptRouter.cpp OptRouter.h
+	g++ -c OptRouter.cpp -o OptRouter.o
 clean:
-	del *.o *.exe *.bak *.a
-explain:
-	@echo "Lib Sources: $(lSOURCES)"
-	@echo "User Sources: $(sSOURCES)"
-	@echo "Lib Objects: $(lOBJECTS)"
-	@echo "User Objects: $(sOBJECTS)"
-	@echo "Lib: $(LIB)"
-	@echo "Target: $(TARGET)"
+	del *.exe *.o

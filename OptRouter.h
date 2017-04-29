@@ -8,6 +8,8 @@
 #ifndef OPT_ROUTER_H_
 #define OPT_ROUTER_H_
 
+#include "BaseRouter.h"
+
 class OptRouter:public BaseRouter
 {
 public:
@@ -15,6 +17,8 @@ public:
         : BaseRouter(r, c, source, target, obs)
     {
     }
+		bool route();
+		void mazeBacktrace();
 	~OptRouter() {}
 };
 
