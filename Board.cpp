@@ -172,7 +172,8 @@ void Board::output() {
 	}
 	cout << "The best path is:" << endl;
 	while (!sta.empty()) {
-		cout << "  (" << sta.top().first.first << "," << sta.top().first.second << ")" << endl;
+		cout << " (" << sta.top().first.first << "," << sta.top().first.second << ") ";
 		sta.pop();
 	}
+	cout << endl;
 }
