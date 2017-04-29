@@ -23,7 +23,7 @@ private:
 	bool check(int x, int y); //check if Point(x,y) is valid
 	bool update(pair<int, int> &a, int dist, int turn);// update a state
 public:
-	int M, N;// row num and column num
+	int M, N;// x in [0,M)   y in [0,N)
 	Point S, T;// two terminals
 	bool **can;// see if Point(x,y) is an obstacle
 	Board(int _M, int _N);

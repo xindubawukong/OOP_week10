@@ -85,7 +85,7 @@ void Board::dp() {
 		from[S.x][S.y][k] = make_pair(make_pair(-1, -1), -1);
 	}
 
-	// 0:down   1:right   2:up   3:left
+	// 0:right   1:up   2:left   3:down
 	int dx[4] = { 1, 0, -1, 0 };
 	int dy[4] = { 0, 1, 0, -1 };
 
